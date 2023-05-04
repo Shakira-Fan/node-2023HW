@@ -1,6 +1,23 @@
 const swaggerAutogen = require("swagger-autogen")();
 
-const outputFile = "./swagger_output.json"; // 輸出的文件名稱
-const endpointsFiles = ["./app.js"]; // 要指向的 API，通常使用 Express 直接指向到 app.js 就可以
+const doc={
+    info:{
+        title:'Meta API',
+        description:'示範範例生成文件'
+    },
+    host:'localhost:3006',
+    schemes:['http','https'],
+    securityDefinitions:{
+        apiKeyAuth:{
+            type:'apiKey',
+            in:'headers',
+            name:'authorization',
+            description:'請加上API Token'
+        }
+    }
+}
 
-swaggerAutogen(outputFile, endpointsFiles); // swaggerAutogen 的方法
+const outputFile= './swagger-output.json';
+const endpointsFiles=['./app.js'];
+
+swaggerAutogen(outputFile,endpointsFiles,doc);
